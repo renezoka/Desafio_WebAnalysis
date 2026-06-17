@@ -2,6 +2,15 @@ import { useState } from 'react'
 import './style.css'
 import Quit from '../../assets/X-27.png'
 
+const empresa = {
+  nome: 'aaaaaaaaaaaaaa',
+  resumo: '',
+  produtos: '',
+  pontosFortes: '',
+  riscos: '',
+  oportunidades: ''
+}
+
 function Home() {
   const [count, setCount] = useState(0)
 
@@ -9,18 +18,18 @@ function Home() {
     <div className='container'>
       <form> 
       <h1>Assistente Inteligente de Análise de Empresas</h1>
-      <input name="nome" type="text"/>
+      <input placeholder="Nome da empresa" name="nome" type="text"/>
       <button type="submit">Pesquisar</button>
       </form>
 
-      <div>
+      <div className='card'>
         <div>
-          <p>Nome da empresa: </p>
-          <p>Resumo da empresa: </p>
-          <p>Principais produtos e serviços: </p>
-          <p>Possíveis pontos fortes: </p>
-          <p>Possíveis riscos: </p>
-          <p>Sugestões de oportunidades de crescimento: </p>
+          <p>Nome da empresa: <span>{empresa.nome}</span></p>
+          <p>Resumo da empresa: <span>{empresa.resumo}</span> </p>
+          <p>Principais produtos e serviços: <span>{empresa.produtos}</span> </p>
+          <p>Possíveis pontos fortes: <span>{empresa.pontosFortes}</span> </p>
+          <p>Possíveis riscos: <span>{empresa.riscos}</span> </p>
+          <p>Sugestões de oportunidades de crescimento: <span>{empresa.oportunidades}</span> </p>
         </div>
         <button className='quit'><img src={Quit} alt="Quit"/></button>
       </div>
