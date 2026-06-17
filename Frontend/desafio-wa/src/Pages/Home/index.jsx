@@ -19,7 +19,7 @@ function Home() {
       <form> 
       <h1>Assistente Inteligente de Análise de Empresas</h1>
       <input placeholder="Nome da empresa" name="nome" type="text"/>
-      <button type="submit">Pesquisar</button>
+      <button type="submit">Analisar</button>
       </form>
 
       <div className='card'>
