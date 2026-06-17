@@ -22,7 +22,7 @@ function Home() {
           <p>Possíveis riscos: </p>
           <p>Sugestões de oportunidades de crescimento: </p>
         </div>
-        <button img src={Quit} alt="Quit" className='quit'/>
+        <button className='quit'><img src={Quit} alt="Quit"/></button>
       </div>
     </div>
 
