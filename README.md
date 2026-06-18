@@ -5,10 +5,9 @@ Stacks:
 React
 Vite
 node.js
+Gemini
 
 Como rodar:
-npm init -y
-npm i
 
 frontend:
 npm i
@@ -16,4 +15,4 @@ npm run dev
 
 backend:
 npm init -y
-npm i
+npm i express cors dotenv @google/generative-ai
