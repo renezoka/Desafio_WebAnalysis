@@ -57,6 +57,7 @@ function Home() {
     <div className='container'>
       <form onSubmit={handleSubmit}>
         <h1>Assistente Inteligente de Análise de Empresas</h1>
+        <h3>Esta versão não utiliza IA. Você consegue buscar empresas como Apple, Samsung, Ubisoft, Blizzard e Sony</h3>
         <input
           placeholder="Nome da empresa"
           name="nome"
