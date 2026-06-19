@@ -1,26 +1,51 @@
-# Desafio_WebAnalysis
-Processo Seletivo de WebAnalysis
+# Assistente Inteligente de Análise de Empresas
 
-Stacks:
-React
-Vite
-node.js
-express
-Gemini
+Aplicação que detalha informações sobre uma empresa de interesse do usuário, apresentando análises e dados relevantes para a tomada de decisão.
 
-Como rodar:
+## Stacks
+- React
+- Vite
+- Node.js
+- Express
+- Docker
+- Docker Compose
+- Gemini (IA)
 
-frontend:
-npm i
+## Como rodar a aplicação
+
+### 1. Pela linha de comando sem Docker
+
+#### Frontend
+```powershell
+cd "c:\Users\usuario\Desktop\Desafio Levi\Desafio_WebAnalysis\Frontend\desafio-wa"
+npm install
 npm run dev
+```
 
-backend (sem ia):
-cd .\Desafio_WebAnalysis\Backend
-npm i
-npm i express cors @anthropic-ai/sdk dotenv
-npm run dev
+Abra no navegador:
+- `http://localhost:5173`
 
-backend (com ia):
-npm init -y
-npm i express cors dotenv @google/generative-ai
-npm run dev
+#### Backend
+```powershell
+cd "c:\Users\usuario\Desktop\Desafio Levi\Desafio_WebAnalysis\Backend"
+npm install
+npm start
+```
+
+O backend ficará disponível em:
+- `http://localhost:3000`
+
+### 2. Com Docker Compose
+
+No diretório principal do projeto:
+```powershell
+cd "c:\Users\usuario\Desktop\Desafio Levi\Desafio_WebAnalysis"
+docker compose up --build
+```
+
+Acesse o frontend em:
+- `http://localhost:5173`
+
+## Descrição rápida
+O projeto funciona como um assistente inteligente para análise de empresas, onde o usuário pode informar uma empresa de interesse e receber informações detalhadas sobre ela. O frontend é responsável pela interface React/Vite e o backend por fornecer a API em Node.js/Express.
+
