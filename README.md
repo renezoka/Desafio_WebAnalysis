@@ -17,7 +17,7 @@ Aplicação que detalha informações sobre uma empresa de interesse do usuário
 
 #### Frontend
 ```powershell
-cd "c:\Users\usuario\Desktop\Desafio Levi\Desafio_WebAnalysis\Frontend\desafio-wa"
+cd ".\Desafio_WebAnalysis\Frontend\desafio-wa"
 npm install
 npm run dev
 ```
@@ -27,7 +27,7 @@ Abra no navegador:
 
 #### Backend
 ```powershell
-cd "c:\Users\usuario\Desktop\Desafio Levi\Desafio_WebAnalysis\Backend"
+cd ".\Desafio Levi\Desafio_WebAnalysis\Backend"
 npm install
 npm start
 ```
@@ -39,7 +39,7 @@ O backend ficará disponível em:
 
 No diretório principal do projeto:
 ```powershell
-cd "c:\Users\usuario\Desktop\Desafio Levi\Desafio_WebAnalysis"
+cd ".\Desafio_WebAnalysis\"
 docker compose up --build
 ```
 
