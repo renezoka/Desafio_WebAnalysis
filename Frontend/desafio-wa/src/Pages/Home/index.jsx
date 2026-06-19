@@ -77,13 +77,38 @@ function Home() {
           <div>
             <p>Nome da empresa: <span>{empresa.nome}</span></p>
             <p>Resumo da empresa: <span>{empresa.resumo}</span></p>
-            <p>Principais produtos e serviços: <span>{empresa.produtos}</span></p>
-            <p>Possíveis pontos fortes: <span>{empresa.pontosFortes}</span></p>
-            <p>Possíveis riscos: <span>{empresa.riscos}</span></p>
-            <p>Sugestões de oportunidades de crescimento: <span>{empresa.oportunidades}</span></p>
+
+            <p>Principais produtos e serviços:</p>
+            <ul>
+              {empresa.produtos.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <p>Possíveis pontos fortes:</p>
+            <ul>
+              {empresa.pontosFortes.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <p>Possíveis riscos:</p>
+            <ul>
+              {empresa.riscos.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <p>Sugestões de oportunidades de crescimento:</p>
+            <ul>
+              {empresa.oportunidades.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
           </div>
+
           <button className='quit' onClick={handleFechar}>
-            <img src={Quit} alt="Fechar"/>
+            <img src={Quit} alt="Fechar" />
           </button>
         </div>
       )}
