@@ -2,8 +2,9 @@ import { useState } from 'react'
 import './style.css'
 import Quit from '../../assets/X-27.png'
 
-const empresa = {
-  nome: 'aaaaaaaaaaaaaa',
+// Estado inicial reutilizável
+const empresaVazia = {
+  nome: '',
   resumo: '',
   produtos: '',
   pontosFortes: '',
@@ -12,29 +13,106 @@ const empresa = {
 }
 
 function Home() {
-  const [count, setCount] = useState(0)
+  const [nomeInput, setNomeInput] = useState('')
+  const [empresa, setEmpresa] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [erro, setErro] = useState('')
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    if (!nomeInput.trim()) return
+
+    setLoading(true)
+    setErro('')
+    setEmpresa(null)
+
+    try {
+      const response = await fetch('http://localhost:3000/analisar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nomeEmpresa: nomeInput })
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro na requisição')
+      }
+
+      const data = await response.json()
+      setEmpresa({ nome: nomeInput, ...data })
+
+    } catch (err) {
+      setErro(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  function handleFechar() {
+    setEmpresa(null)
+    setNomeInput('')
+  }
 
   return (
     <div className='container'>
-      <form> 
-      <h1>Assistente Inteligente de Análise de Empresas</h1>
-      <input placeholder="Nome da empresa" name="nome" type="text"/>
-      <button type="submit">Pesquisar</button>
+      <form onSubmit={handleSubmit}>
+        <h1>Assistente Inteligente de Análise de Empresas</h1>
+        <h3>Esta versão não utiliza IA. Você consegue buscar empresas como Apple, Samsung, Ubisoft, Blizzard e Sony</h3>
+        <input
+          placeholder="Nome da empresa"
+          name="nome"
+          type="text"
+          value={nomeInput}
+          onChange={(e) => setNomeInput(e.target.value)}
+        />
+        <button type="submit" disabled={loading}>
+          {loading ? 'Analisando...' : 'Analisar'}
+        </button>
       </form>
 
-      <div className='card'>
-        <div>
-          <p>Nome da empresa: <span>{empresa.nome}</span></p>
-          <p>Resumo da empresa: <span>{empresa.resumo}</span> </p>
-          <p>Principais produtos e serviços: <span>{empresa.produtos}</span> </p>
-          <p>Possíveis pontos fortes: <span>{empresa.pontosFortes}</span> </p>
-          <p>Possíveis riscos: <span>{empresa.riscos}</span> </p>
-          <p>Sugestões de oportunidades de crescimento: <span>{empresa.oportunidades}</span> </p>
-        </div>
-        <button className='quit'><img src={Quit} alt="Quit"/></button>
-      </div>
-    </div>
+      {erro && <p className='erro'>{erro}</p>}
 
+      {empresa && (
+        <div className='card'>
+          <div>
+            <p>Nome da empresa: <span>{empresa.nome}</span></p>
+            <p>Resumo da empresa: <span>{empresa.resumo}</span></p>
+
+            <p>Principais produtos e serviços:</p>
+            <ul>
+              {empresa.produtos.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <p>Possíveis pontos fortes:</p>
+            <ul>
+              {empresa.pontosFortes.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <p>Possíveis riscos:</p>
+            <ul>
+              {empresa.riscos.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+
+            <p>Sugestões de oportunidades de crescimento:</p>
+            <ul>
+              {empresa.oportunidades.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <button className='quit' onClick={handleFechar}>
+            <img src={Quit} alt="Fechar" />
+          </button>
+        </div>
+      )}
+    </div>
   )
 }
 
